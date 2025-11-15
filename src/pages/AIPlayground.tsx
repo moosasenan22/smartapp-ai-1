@@ -12,7 +12,6 @@ export const AIPlayground: React.FC = () => {
 
     setIsLoading(true);
     
-    // محاكاة استجابة الذكاء الاصطناعي
     setTimeout(() => {
       setResponse(`هذا رد محاكاة للذكاء الاصطناعي على: "${prompt}"
       
@@ -27,6 +26,15 @@ export const AIPlayground: React.FC = () => {
     }, 2000);
   };
 
+  const quickExamples = [
+    'أنشئ لي نموذج تسجيل دخول',
+    'اكتب كود لزر animated',
+    'صمم بطاقة منتج',
+    'أنشئ hook لإدارة الحالة',
+    'كود لشريط تقدم Progress bar',
+    'مكون calendar في React'
+  ];
+
   return (
     <div className="min-h-screen bg-gray-100 p-6 rtl">
       <div className="max-w-4xl mx-auto">
@@ -36,7 +44,6 @@ export const AIPlayground: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* منطقة الإدخال */}
           <div className="space-y-4">
             <div className="bg-white rounded-lg shadow-sm p-6">
               <h3 className="text-lg font-semibold mb-4">💬 محادثة مع الذكاء الاصطناعي</h3>
@@ -65,16 +72,10 @@ export const AIPlayground: React.FC = () => {
               </form>
             </div>
 
-            {/* أمثلة سريعة */}
             <div className="bg-white rounded-lg shadow-sm p-6">
               <h3 className="text-lg font-semibold mb-4">⚡ أمثلة سريعة</h3>
               <div className="grid grid-cols-1 gap-2">
-                {[
-                  'أنشئ لي نموذج تسجيل دخول',
-                  'اكتب كود لزر animated',
-                  'صمم بطاقة منتج',
-                  'أنشئ hook لإدارة الحالة'
-                ].map((example, index) => (
+                {quickExamples.map((example, index) => (
                   <button
                     key={index}
                     onClick={() => setPrompt(example)}
@@ -87,14 +88,13 @@ export const AIPlayground: React.FC = () => {
             </div>
           </div>
 
-          {/* منطقة الإخراج */}
           <div className="bg-white rounded-lg shadow-sm p-6">
             <h3 className="text-lg font-semibold mb-4">📝 النتيجة</h3>
             
             {isLoading ? (
               <LoadingSpinner text="جاري توليد الرد..." />
             ) : response ? (
-              <div className="bg-gray-50 rounded-lg p-4 whitespace-pre-wrap">
+              <div className="bg-gray-50 rounded-lg p-4 whitespace-pre-wrap font-mono text-sm">
                 {response}
               </div>
             ) : (
