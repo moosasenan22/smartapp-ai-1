@@ -27,7 +27,6 @@ export const useBuilderActions = () => {
       payload: newComponent
     });
 
-    // تحديد المكون المضاف تلقائياً
     dispatch({
       type: 'SELECT_COMPONENT',
       payload: newComponent
@@ -56,8 +55,7 @@ export const useBuilderActions = () => {
   };
 
   const clearCanvas = () => {
-    dispatch({ type: 'SELECT_COMPONENT', payload: null });
-    // إعادة تعيين المكونات سيتم في future
+    dispatch({ type: 'CLEAR_CANVAS' });
   };
 
   return {
